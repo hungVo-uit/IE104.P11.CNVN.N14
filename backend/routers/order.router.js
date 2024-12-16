@@ -43,15 +43,17 @@ router.post("/", async (req, res) => {
     fullName: req.body.fullName,
     orderItems: orderItemsIdsResolved,
     totalPrice: totalPrice,
-    status: req.body.status,
+    status: req.body.status || "pending",
     paymentMethod: req.body.paymentMethod,
     shippingAddress: req.body.shippingAddress,
   });
   order = await order.save();
   if (!order) {
-    return res.status(400).send("The order cannot created");
+    return res
+      .status(400)
+      .json({ success: false, message: "The order cannot created" });
   }
-  res.send(order);
+  res.json({ success: true, order: order });
 });
 
 router.delete("/:id", (req, res) => {

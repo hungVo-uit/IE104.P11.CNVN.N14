@@ -98,5 +98,58 @@ router.get("/order", checkAuthenticated, async (req, res) => {
     .catch((err) => console.log(err));
   res.render("page/order.ejs", { cartItems: data.itemsInCart, user: req.user });
 });
+router.post("/order", checkAuthenticated, async (req, res) => {
+  const baseUrl = `${req.protocol}://${req.get("host")}${req.baseUrl}`;
+  const apiUrl = `${baseUrl}${api}`;
+  const data = await fetch(`${apiUrl}/cart`, {
+    method: "GET",
+    credentials: "same-origin",
+    headers: {
+      Cookie: req.headers.cookie,
+      "Content-Type": "application/json",
+    },
+  })
+    .then((data) => data.json())
+    .catch((err) => console.log(err));
+  const orderItems = data.itemsInCart.map((item) => {
+    return {
+      product: item.product.id,
+      quantity: item.quantity,
+    };
+  });
+  const requestBody = {
+    user: req.user.id,
+    phoneNumber: req.body.phoneNumber,
+    fullName: req.body.fullName,
+    orderItems: orderItems,
+    paymentMethod: req.body.paymentMethod,
+    shippingAddress: req.body.address,
+  };
+  const orderData = await fetch(`${apiUrl}/order`, {
+    method: "POST",
+    credentials: "same-origin",
+    headers: {
+      Cookie: req.headers.cookie,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(requestBody),
+  })
+    .then((data) => data.json())
+    .catch((err) => console.log(err));
+  if (orderData.success) {
+    await fetch(`${apiUrl}/cart/clear`, {
+      method: "POST",
+      credentials: "same-origin",
+      headers: {
+        Cookie: req.headers.cookie,
+        "Content-Type": "application/json",
+      },
+    });
+    res.redirect("/success-order");
+  }
+});
+router.get("/success-order", (req, res) => {
+  res.render("page/success-order.ejs");
+});
 
 module.exports = router;
