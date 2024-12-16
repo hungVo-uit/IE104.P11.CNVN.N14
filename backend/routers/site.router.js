@@ -43,18 +43,32 @@ router.get("/info", checkAuthenticated, (req, res) => {
   const user = req.user;
   res.render("page/profile.ejs", { user: user });
 });
-router.get("/my-account", checkAuthenticated, (req, res) => {
+router.get("/my-account", checkAuthenticated, async (req, res) => {
+  const baseUrl = `${req.protocol}://${req.get("host")}${req.baseUrl}`;
+  const apiUrl = `${baseUrl}${api}`;
   const user = req.user;
-  res.render("page/my-account.ejs", { user: user });
+  const response = await fetch(`${apiUrl}/order/user/last/${user._id}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((data) => data.json())
+    .catch((err) => console.log(err));
+  res.render("page/my-account.ejs", {
+    user: user,
+    order:
+      {
+        ...response.lastOrder,
+        dateOrdered: new Date(response.lastOrder.dateOrdered),
+      } || false,
+  });
 });
 router.get("/register", checkNotAuthenticated, (req, res) => {
   res.render("page/register.ejs");
 });
 router.get("/signup-next", checkNotAuthenticated, (req, res) => {
   res.render("page/signup-next.ejs");
-});
-router.get("/my-account", (req, res) => {
-  res.render("page/my-account.ejs");
 });
 router.get("/to-pay", (req, res) => {
   res.render("page/to-pay.ejs");

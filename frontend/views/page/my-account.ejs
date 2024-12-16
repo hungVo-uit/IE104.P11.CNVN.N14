@@ -78,12 +78,46 @@
         </div>
 
         <div class="manage-order">
-          <div class="purchase-order">Purchase order</div>
+          <div class="purchase-order">View Purchase History</div>
+          <div class="order-list">
+            <% if (order) { %>
+            <div class="order-item">
+              <div class="order-item-detail">
+                <h3>Most recent order</h3>
+                <p><b>Date ordered:</b> <%= order.dateOrdered.toLocaleString("vi-VN") %></p>
+                <p><b>Status:</b> <%= order.status %></p>
+              </div>
+              <% order.orderItems.forEach(orderItem => { %>
+              <div class="order-product-item">
+                <img
+                  src="/images/products/<%= orderItem.product.category.name %>/<%= orderItem.product.imgName %>"
+                  alt="imgName"
+                />
+                <div class="order-product-item-details">
+                  <p><b>Name: </b><%= orderItem.product.name %></p>
+                  <p><b>Quantity: </b><%= orderItem.quantity %></p>
+                </div>
+                <% const totalPrice=orderItem.product.price*orderItem.quantity%>
+                <div class="order-product-item-price">
+                  <%= totalPrice.toLocaleString('vi-VN')+" VND" %>
+                </div>
+              </div>
+              <% }) %>
+              <div class="total-price">
+                <span
+                  ><strong
+                    >Grand total: <%=
+                    order.totalPrice.toLocaleString('vi-VN')+" VND"%></strong
+                  ></span
+                >
+              </div>
+            </div>
+            <% } %>
+          </div>
         </div>
       </div>
     </main>
 
     <%- include("../partials/footer.ejs") %>
-
   </body>
 </html>

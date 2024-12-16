@@ -2,6 +2,7 @@ const express = require("express");
 const Order = require("../models/order.model");
 const OrderItem = require("../models/order-item.model");
 const mongoose = require("mongoose");
+const { populate } = require("../models/users.model");
 const router = express.Router();
 
 router.get("/", async (req, res) => {
@@ -12,6 +13,32 @@ router.get("/", async (req, res) => {
     res.status(500).json({ sucees: false });
   }
   res.send(orderList);
+});
+router.get("/user/last/:user", async (req, res) => {
+  if (!mongoose.isValidObjectId(req.params.user)) {
+    res.status(400).json("Invalid user id");
+  }
+
+  const filter = {
+    user: req.params.user,
+  };
+  const lastOrder = await Order.findOne(filter)
+    .sort({ dateOrdered: -1 })
+    .limit(1)
+    .populate({
+      path: "orderItems",
+      populate: {
+        path: "product",
+        select: "price name imgName category",
+        populate: {
+          path: "category",
+        },
+      },
+    });
+  if (!lastOrder) {
+    return res.status(404).json({ message: "No orders found for this user" });
+  }
+  res.status(200).json({ message: "Found", lastOrder: lastOrder });
 });
 
 router.post("/", async (req, res) => {

@@ -127,18 +127,6 @@ form {
   flex: 1 200;
   margin-left: 5px;
 }
-.edit-btn {
-  display: inline-block;
-  width: 30%;
-  padding: 0.8rem;
-  background-color: red;
-  color: white;
-  border: none;
-  border-radius: 30px;
-  cursor: pointer;
-  margin-left: 35%;
-  margin-right: 35%;
-}
 .input-field input,
 .input-field2 input,
 .input-field3 input {
@@ -164,9 +152,10 @@ form {
 }
 .order-item {
   display: flex;
-  justify-content: space-between;
+  justify-content: start;
   align-items: center;
   margin-bottom: 15px;
+  gap:1rem;
 }
 
 .order-item:last-child {
@@ -179,23 +168,19 @@ form {
   border-radius: 8px;
   margin-right: 15px;
 }
-
 .order-item-details {
-  flex: 1;
+  flex-direction: column;
+  align-self: self-start;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: space-between;
 }
-
-.order-item-details h4 {
-  margin: 0;
-  font-size: 1em;
-}
-
-.order-item-details p {
-  margin: 5px 0;
-  font-size: 0.9em;
-}
-
 .order-item-price {
   font-weight: bold;
+  width: 25%;
+  text-align: end;
+  margin-left: auto;
+  align-self: self-end;
 }
 
 .summary-footer {
