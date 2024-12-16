@@ -1,6 +1,3 @@
-function moveToDetailProduct(prodId) {
-  window.location.href = `/product-detail/${prodId}`;
-}
 async function checkLogin() {
   const response = await fetch("/api/av1/check-authenticated", {
     method: "GET",
@@ -15,6 +12,7 @@ async function checkLogin() {
 }
 async function addToCart(productId, quantity) {
   if (checkLogin()) {
+    console.log(productId);
     const response = await fetch("/api/av1/cart", {
       method: "POST",
       credentials:"include",

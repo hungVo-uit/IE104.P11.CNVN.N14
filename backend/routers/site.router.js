@@ -55,11 +55,33 @@ router.get("/my-account", (req, res) => {
 router.get("/to-pay", (req, res) => {
   res.render("page/to-pay.ejs");
 });
-router.get("/product-page", (req, res) => {
-  res.render("page/product-page.ejs");
+router.get("/product-page", async (req, res) => {
+  const baseUrl = `${req.protocol}://${req.get("host")}${req.baseUrl}`;
+  const apiUrl = `${baseUrl}${api}`;
+  const products = await fetch(`${apiUrl}/product`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((data) => data.json())
+    .catch((err) => console.log(err));
+  res.render("page/product-page.ejs", { products: products });
 });
-router.get("/cart", (req, res) => {
-  res.render("page/cart.ejs");
+router.get("/cart", checkAuthenticated, async (req, res) => {
+  const baseUrl = `${req.protocol}://${req.get("host")}${req.baseUrl}`;
+  const apiUrl = `${baseUrl}${api}`;
+  const cartItems = await fetch(`${apiUrl}/cart`, {
+    method: "GET",
+    credentials: "same-origin",
+    headers: {
+      Cookie: req.headers.cookie,
+      "Content-Type": "application/json",
+    },
+  })
+    .then((data) => data.json())
+    .catch((err) => console.log(err));
+  res.render("page/cart.ejs", { cartItems: cartItems });
 });
 router.get("/order", (req, res) => {
   res.render("page/order.ejs");

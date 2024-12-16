@@ -48,7 +48,7 @@
 
           <div class="buttons">
             <button class="buy-now">Buy now</button>
-            <button class="add-to-cart">Add to cart</button>
+            <button class="add-to-cart" onclick="addToCart('<%= product._id%>',1)">Add to cart</button>
           </div>
         </div>
       </div>
@@ -122,4 +122,5 @@
       </div>
     </footer>
   </body>
+  <script src="/scripts/add-to-cart.js"></script>
 </html>

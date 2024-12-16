@@ -1,5 +1,6 @@
 @import url("./partials/sub-nav.css");
 @import url("./partials/header.css");
+@import url("./product-card.css");
 * {
     margin: 0;
     padding: 0;
@@ -213,7 +214,12 @@ a {
     text-decoration: line-through;
     display:inline
 }
-
+.products-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: space-around;
+}
 .show-more{
     text-align: center;
     margin-top: 50px;

@@ -1,8 +1,12 @@
-<div class="product-card" onclick="moveToDetailProduct('<%= product._id%> ')">
+<div class="product-card">
   <img
     src="/images/products/<%= product.category.name %>/<%= product.imgName %>"
-    alt=""
+    alt="Product Image"
+    onclick="moveToDetailProduct('<%= product._id%> ')"
   />
-  <p class="product-name"><%= product.name %></p>
-  <p class="product-price"><%= product.price.toLocaleString('vi-VN')+"đ" %></p>
+  <div class="details" onclick="moveToDetailProduct('<%= product._id%> ')">
+    <h2><%= product.name %></h2>
+    <p class="price"><%= product.price.toLocaleString('vi-VN')+"đ" %></p>
+  </div>
+  <button onclick="addToCart('<%= product._id%>',1)">Add to cart</button>
 </div>

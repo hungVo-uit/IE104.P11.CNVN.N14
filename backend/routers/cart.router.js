@@ -7,7 +7,9 @@ router.get("/", async (req, res) => {
   }
   itemsInCart = await Promise.all(
     req.session.cart.map(async (item) => {
-      const product = await Product.findById(item.productId);
+      const product = await Product.findById(item.productId).populate(
+        "category"
+      );
       const totalPrice = product.price * item.quantity;
       return {
         product: product,

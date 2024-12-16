@@ -9,8 +9,7 @@ const app = express();
 const initializePassport = require("./config/passport.config");
 const session = require("express-session");
 require("dotenv/config");
-//config passport
-initializePassport(passport);
+
 //conect database
 mongoose
   .connect(process.env.CONNECTION_STRING, {
@@ -19,8 +18,12 @@ mongoose
   .then((e) => console.log("Connect to mongodb success"))
   .catch((e) => console.log(e));
 //middleware
-app.use(cors());
-app.options("*", cors());
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+  })
+);
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(
@@ -37,6 +40,8 @@ app.use(
     }),
   })
 );
+//config passport
+initializePassport(passport);
 app.use(passport.initialize());
 app.use(passport.session());
 
