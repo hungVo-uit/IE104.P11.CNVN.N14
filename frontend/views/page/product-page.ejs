@@ -31,6 +31,7 @@
 
       <div class="filters">
         <div class="filter-by-brand">
+          <div id="all-filter-btn">All</div>
           <div class="hp-filter filter-btn" brand="hp">
             <a class="hp-link-filter" href="#">
               <svg
@@ -122,12 +123,14 @@
             </a>
           </div>
         </div>
-        <div class="sorter">
-          <section>
-            <option value="">Plus</option>
-            <option value="">Minus</option>
-          </section>
-        </div>
+          <select id="sortOptions">
+            <option value="name_asc" sortBy="name" order="asc">Tên (A-Z)</option>
+            <option value="name_desc" sortBy="name" order="desc">Tên (Z-A)</option>
+            <option value="price_low_high" sortBy="price" order="asc">Giá (Thấp → Cao)</option>
+            <option value="price_high_low" sortBy="price" order="desc">Giá (Cao → Thấp)</option>
+            <option value="date_old_new" sortBy="date" order="asc">Ngày (Cũ nhất)</option>
+            <option value="date_new_old" sortBy="date" order="desc">Ngày (Mới nhất)</option>
+          </select>
       </div>
       <div class="products-container">
         <% products.forEach(product => { %>
@@ -139,4 +142,5 @@
   </body>
   <script src="scripts/product-card.js"></script>
   <script src="scripts/filterProduct.js"></script>
+  <script src="scripts/sort-product.js"></script>
 </html>
