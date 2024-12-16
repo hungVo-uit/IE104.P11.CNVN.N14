@@ -31,7 +31,25 @@
 
       <div class="filters">
         <div class="filter-by-brand">
-          <div id="all-filter-btn">All</div>
+          <div id="all-filter-btn">
+            <button
+              style="
+                width: 100px;
+                height: 100px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: 1px solid #ccc;
+                border-radius: 88px;
+                background-color: #f9f9f9;
+                cursor: pointer;
+                font-size:2.5rem;
+                font-weight: 1.25rem;
+              "
+            >
+            ALL 
+            </button>
+          </div>
           <div class="hp-filter filter-btn" brand="hp">
             <a class="hp-link-filter" href="#">
               <svg
@@ -123,14 +141,24 @@
             </a>
           </div>
         </div>
-          <select id="sortOptions">
-            <option value="name_asc" sortBy="name" order="asc">Tên (A-Z)</option>
-            <option value="name_desc" sortBy="name" order="desc">Tên (Z-A)</option>
-            <option value="price_low_high" sortBy="price" order="asc">Giá (Thấp → Cao)</option>
-            <option value="price_high_low" sortBy="price" order="desc">Giá (Cao → Thấp)</option>
-            <option value="date_old_new" sortBy="date" order="asc">Ngày (Cũ nhất)</option>
-            <option value="date_new_old" sortBy="date" order="desc">Ngày (Mới nhất)</option>
-          </select>
+        <select id="sortOptions">
+          <option value="name_asc" sortBy="name" order="asc">Tên (A-Z)</option>
+          <option value="name_desc" sortBy="name" order="desc">
+            Tên (Z-A)
+          </option>
+          <option value="price_low_high" sortBy="price" order="asc">
+            Giá (Thấp → Cao)
+          </option>
+          <option value="price_high_low" sortBy="price" order="desc">
+            Giá (Cao → Thấp)
+          </option>
+          <option value="date_old_new" sortBy="date" order="asc">
+            Ngày (Cũ nhất)
+          </option>
+          <option value="date_new_old" sortBy="date" order="desc">
+            Ngày (Mới nhất)
+          </option>
+        </select>
       </div>
       <div class="products-container">
         <% products.forEach(product => { %>
