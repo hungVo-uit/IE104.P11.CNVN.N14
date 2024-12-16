@@ -48,7 +48,7 @@ a {
     color: #F14848;
 }
 
-.multi-choice-product{
+/* .multi-choice-product{
     display:flex;
     flex-direction: column;
     align-items: center;
@@ -108,7 +108,7 @@ a {
     width: 50px;
     margin-right: 10px;
     margin-left: 10px;
-}
+}*/
 
 .buy-now{
     text-align: center;
@@ -132,10 +132,119 @@ a {
 }
 
 .buy-now-button:hover {
-    background-color: #c0392b; /* Đổi màu nền khi hover */
-    color: #f0f0f0; /* Có thể đổi màu chữ nếu muốn */
+    background-color: #c0392b; 
+    color: #f0f0f0; 
 }
 
+.cart-container {
+  max-width: 800px;
+  margin: 50px auto;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.cart-header {
+  background-color: #3498db;
+  color: #fff;
+  padding: 15px;
+  text-align: center;
+  font-size: 1.5em;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+.cart-item:last-child {
+  border-bottom: none;
+}
+
+.cart-item img {
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+  margin-right: 15px;
+  cursor: pointer;
+}
+
+.cart-item-details {
+  flex: 1;
+  cursor: pointer;
+}
+
+.cart-item-details h4 {
+  margin: 0;
+  font-size: 1.2em;
+  color: #333;
+}
+
+.cart-item-details p {
+  margin: 5px 0;
+  color: #555;
+}
+
+.cart-item-actions {
+  display: flex;
+  align-items: center;
+}
+
+.cart-item-actions input {
+  width: 50px;
+  text-align: center;
+  margin: 0 10px;
+  font-size: 1em;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.cart-item-actions button {
+  padding: 5px 10px;
+  margin: 0 5px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.cart-item-actions button:hover {
+  background-color: #2980b9;
+}
+.delete-button {
+  background-color: #e74c3c;
+  margin-left: 10px;
+}
+
+.delete-button:hover {
+  background-color: #c0392b;
+}
+
+
+.cart-footer {
+  padding: 15px;
+  text-align: right;
+  font-size: 1.2em;
+  color: #333;
+  background: #f4f4f4;
+}
+
+.cart-footer strong {
+  color: #27ae60;
+}
+
+.empty-cart {
+  text-align: center;
+  padding: 50px;
+  color: #555;
+  font-size: 1.2em;
+}
 
 footer {
     width: 100%;

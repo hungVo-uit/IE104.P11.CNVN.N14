@@ -6,7 +6,7 @@
   />
   <div class="details" onclick="moveToDetailProduct('<%= product._id%> ')">
     <h2><%= product.name %></h2>
-    <p class="price"><%= product.price.toLocaleString('vi-VN')+"đ" %></p>
+    <p class="price"><%= product.price.toLocaleString('vi-VN')+" VND" %></p>
   </div>
   <button onclick="addToCart('<%= product._id%>',1)">Add to cart</button>
 </div>

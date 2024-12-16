@@ -12,10 +12,9 @@ async function checkLogin() {
 }
 async function addToCart(productId, quantity) {
   if (checkLogin()) {
-    console.log(productId);
     const response = await fetch("/api/av1/cart", {
       method: "POST",
-      credentials:"include",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
@@ -28,5 +27,26 @@ async function addToCart(productId, quantity) {
     if (data.message) {
       alert(data.message);
     }
+    window.location.reload();
+  }
+}
+
+async function removeFromCart(productId) {
+  if (checkLogin()) {
+    const response = await fetch("/api/av1/cart/remove", {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        productId,
+      }),
+    });
+    const data = await response.json();
+    if (data.message) {
+      alert(data.message);
+    }
+    window.location.reload();
   }
 }

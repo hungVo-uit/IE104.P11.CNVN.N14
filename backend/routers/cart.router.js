@@ -3,7 +3,9 @@ const Product = require("../models/products.model");
 const router = express.Router();
 router.get("/", async (req, res) => {
   if (!req.session.cart || req.session.cart.length === 0) {
-    return res.status(400).json({ message: "Cart is empty" });
+    return res
+      .status(400)
+      .json({ success: false, message: "Cart is empty", itemsInCart: [] });
   }
   itemsInCart = await Promise.all(
     req.session.cart.map(async (item) => {
@@ -18,7 +20,7 @@ router.get("/", async (req, res) => {
       };
     })
   );
-  res.status(200).json(itemsInCart);
+  res.status(200).json({ success: true, itemsInCart: itemsInCart });
 });
 router.post("/", (req, res) => {
   const { productId, quantity } = req.body;
@@ -33,11 +35,16 @@ router.post("/", (req, res) => {
 
   if (existingItem) {
     existingItem.quantity += quantity;
+    if (existingItem.quantity <= 0) {
+      req.session.cart = req.session.cart.filter(
+        (item) => item.productId !== productId
+      );
+    }
   } else {
     req.session.cart.push({ productId, quantity });
   }
 
-  res.json({ message: "Product added to cart", cart: req.session.cart });
+  res.json({ message: "Product updated", cart: req.session.cart });
 });
 
 router.post("/remove", (req, res) => {
