@@ -83,8 +83,20 @@ router.get("/cart", checkAuthenticated, async (req, res) => {
     .catch((err) => console.log(err));
   res.render("page/cart.ejs", { cartItems: data.itemsInCart, user: req.user });
 });
-router.get("/order", (req, res) => {
-  res.render("page/order.ejs");
+router.get("/order", checkAuthenticated, async (req, res) => {
+  const baseUrl = `${req.protocol}://${req.get("host")}${req.baseUrl}`;
+  const apiUrl = `${baseUrl}${api}`;
+  const data = await fetch(`${apiUrl}/cart`, {
+    method: "GET",
+    credentials: "same-origin",
+    headers: {
+      Cookie: req.headers.cookie,
+      "Content-Type": "application/json",
+    },
+  })
+    .then((data) => data.json())
+    .catch((err) => console.log(err));
+  res.render("page/order.ejs", { cartItems: data.itemsInCart, user: req.user });
 });
 
 module.exports = router;

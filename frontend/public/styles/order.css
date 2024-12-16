@@ -1,5 +1,5 @@
-@import url('./partials/header.css');
-@import url('./partials/sub-nav.css');
+@import url("./partials/header.css");
+@import url("./partials/sub-nav.css");
 * {
   margin: 0;
   padding: 0;
@@ -51,13 +51,13 @@ main {
 }
 
 .customer-name {
-  color: #F14848;
+  color: #f14848;
 }
 
 .home {
   color: rgb(95, 94, 94);
   font-size: 43px;
-} 
+}
 
 .cart {
   color: black;
@@ -69,12 +69,13 @@ main {
   display: flex;
   justify-content: space-around;
 }
-.a{
+.order-form {
   width: 100%;
   display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .order-container {
-  width: 80%;
   max-width: 1200px;
 }
 
@@ -90,49 +91,43 @@ h2 {
   gap: 2rem;
 }
 
-.billing-detail{
+.order-detail {
   background-color: #fff;
   padding: 1.5rem;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: 48%;
-  flex: 3 200;
-  margin: 0rem 1rem 0rem 1rem;
 }
-form{
+form {
   margin: 0rem 3rem 0rem 5rem;
 }
 .order-summary {
   background-color: #fff;
   padding: 1.5rem;
-  width: 48%;
-  flex: 2 200;
 }
-.billing-detail h3, .order-summary h3 {
+.order-detail h3,
+.order-summary h3 {
   margin-bottom: 1rem;
   color: black;
 }
-.input-field23{
+.input-field23 {
   display: flex;
   margin-bottom: 2rem;
 }
-.input-field label, .input-field2 label, .input-field3 label {
+.input-field label,
+.input-field2 label,
+.input-field3 label {
   display: block;
   margin-bottom: 0.5rem;
   font-weight: bold;
 }
-.input-field2{
+.input-field2 {
   flex: 1 200;
   margin-right: 5px;
 }
-.input-field3{
+.input-field3 {
   flex: 1 200;
   margin-left: 5px;
 }
-.buton{
-  width: 100%
-}
-.edit-btn{
+.edit-btn {
   display: inline-block;
   width: 30%;
   padding: 0.8rem;
@@ -144,69 +139,84 @@ form{
   margin-left: 35%;
   margin-right: 35%;
 }
-.input-field input, .input-field2 input, .input-field3 input {
+.input-field input,
+.input-field2 input,
+.input-field3 input {
   width: 100%;
   padding: 0.8rem;
   margin-bottom: 1rem;
   border-radius: 30px;
   border: 1px solid #ddd;
 }
-
-.apply-coupon{
-  padding: 0.8rem;
-  background-color: red;
-  color: white;
-  border: none;
-  border-radius: 30px;
-  cursor: pointer;
-}
 .submit-btn {
-  width: 25%;
+  display: flex;
+  justify-content: center;
+}
+.submit-btn button {
+  width: 10rem;
   padding: 0.8rem;
+  margin-bottom: 2rem;
   background-color: red;
   color: white;
   border: none;
   border-radius: 30px;
   cursor: pointer;
 }
-.order-summary ul {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 2rem 0rem;
-}
-.order-summary .fr li{
+.order-item {
   display: flex;
   justify-content: space-between;
-  padding: 0.5rem 0;
-  padding-left: 4rem;
-  background-image: url(/frontend/views/page/Order/Pic/dsc06764_aae18c0f47014e20ac3724ec142e7a76_master.webp);
-  background-position: 0 0;
-  background-size: 3rem 3rem;
-  background-repeat: no-repeat;
+  align-items: center;
+  margin-bottom: 15px;
 }
-.order-summary .sp li{
+
+.order-item:last-child {
+  margin-bottom: 0;
+}
+
+.order-item img {
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  margin-right: 15px;
+}
+
+.order-item-details {
+  flex: 1;
+}
+
+.order-item-details h4 {
+  margin: 0;
+  font-size: 1em;
+}
+
+.order-item-details p {
+  margin: 5px 0;
+  font-size: 0.9em;
+}
+
+.order-item-price {
+  font-weight: bold;
+}
+
+.summary-footer {
+  border-top: 1px solid #ddd;
+  margin-top: 20px;
+  padding-top: 20px;
+}
+
+.summary-footer .summary-line {
   display: flex;
   justify-content: space-between;
-  padding: 0.5rem 0;
-  padding-left: 4rem;
-  background-image: url(/frontend/views/page/Order/Pic/2663_dell_p2424ht.jpg);
-  background-position: 0 0;
-  background-size: 3rem 3rem;
-  background-repeat: no-repeat;
+  margin-bottom: 10px;
 }
-.order-summary .bt li {
-  display: flex;
-  justify-content: space-between;
-  padding: 0.5rem 0;
-  border-bottom: 1px solid #ddd;
+
+.summary-footer .summary-line:last-child {
+  font-size: 1.2em;
+  font-weight: bold;
 }
-.order-summary ul p {
-  display: flex;
-  justify-content: space-between;
-  padding: 0.5rem 0;
-}
-.arrpayment{
-  width: 100%;
+
+.arrpayment {
+  padding: 1.5rem;
   display: flex;
 }
 .payment-options label {
@@ -214,23 +224,23 @@ form{
   margin: 1.5rem 0 1.5rem 0;
   flex: 3 200;
 }
-.cardlogo{
-  flex: 1 200; 
+.cardlogo {
+  flex: 1 200;
   max-width: 100px;
   height: auto;
   float: left;
   justify-content: space-between;
 }
-.input-field4{
+.input-field4 {
   width: 100%;
   display: flex;
   margin: 0rem 0.5rem 1rem 0rem;
 }
-.input-field4 input{
+.input-field4 input {
   flex: 3 200;
   margin-right: 5px;
 }
-.input-field4 .apply-coupon{
+.input-field4 .apply-coupon {
   flex: 2 200;
   margin-left: 5px;
 }
@@ -277,7 +287,7 @@ footer a {
 }
 .copyright {
   opacity: 0.5;
-  font-size: 1.125rem; 
+  font-size: 1.125rem;
   line-height: 1.75rem;
 }
 @media screen and (min-width: 768px) {

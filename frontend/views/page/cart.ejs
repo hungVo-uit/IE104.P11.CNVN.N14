@@ -60,8 +60,8 @@
             <button class="delete-button" onclick="removeFromCart('<%= cartItem.product._id%>')">Remove</button>
           </div>
         </div>
-        <% }) %> <% const totalSum = cartItems.reduce((sum, item) => sum +
-        item.totalPrice, 0); %>
+        <% }) %>
+         <% const totalSum = cartItems.reduce((sum, item) => sum +item.totalPrice, 0); %>
         <div class="cart-footer">
           Sum:
           <strong id="total-price"

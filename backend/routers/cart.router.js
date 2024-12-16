@@ -44,7 +44,7 @@ router.post("/", (req, res) => {
     req.session.cart.push({ productId, quantity });
   }
 
-  res.json({ message: "Product updated", cart: req.session.cart });
+  res.json({ message: "Cart updated", cart: req.session.cart });
 });
 
 router.post("/remove", (req, res) => {

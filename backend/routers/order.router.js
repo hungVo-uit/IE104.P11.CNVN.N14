@@ -39,6 +39,8 @@ router.post("/", async (req, res) => {
   const totalPrice = totalPrices.reduce((a, b) => a + b, 0);
   let order = new Order({
     user: req.body.user,
+    phoneNumber: req.body.phoneNumber,
+    fullName: req.body.fullName,
     orderItems: orderItemsIdsResolved,
     totalPrice: totalPrice,
     status: req.body.status,

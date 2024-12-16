@@ -1,135 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-  />
-  <link rel="stylesheet" href="styles/order.css">
-  <title>Order</title>
-</head>
-<body>
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="styles/order.css" />
+    <title>Order</title>
+  </head>
+  <body>
     <header><%- include("../partials/header.ejs") %></header>
     <main>
       <%- include("../partials/sub-nav.ejs") %>
       <div class="breadcrumb-container">
         <nav class="breadcrumb">
-            <a class="home" href="#">Home</a> / 
-            <a class="cart" href="#">Cart</a>
+          <a class="home" href="/">Home</a> /
+          <a class="cart" href="#">Order</a>
         </nav>
       </div>
       <div class="welcome">
         Welcome! <span class="customer-name">TienDat</span>
       </div>
-            <div class="a">
-                      <!-- Billing Details -->
-              <div class="billing-detail">
-                <h3>Billing Details</h3>
-                    <form>
-                      <div class="input-field">
-                          <label>Full Name</label>
-                          <input type="text" value="Nguyen The Tien Dat" >
-                      </div>
-                      <div class="input-field23">
-                        <div class="input-field2">
-                          <label>Phone Number</label>
-                          <input type="text" value="847592030" >
-                      </div>
-                      <div class="input-field3">
-                          <label>Address</label>
-                          <input type="text" value="Ktx khu a, DHQG-HCM" >
-                      </div>
-                      </div>
-                    </form>
-              </div>
+      <form class="order-from">
+        <div class="order-detail">
+          <h3>Order Details</h3>
+          <div class="input-field">
+            <label>Full Name</label>
+            <input
+              type="text"
+              placeholder="Input your full name"
+              name="fullName"
+              required
+            />
+          </div>
+          <div class="input-field23">
+            <div class="input-field2">
+              <label>Phone Number</label>
+              <input
+                type="text"
+                placeholder="Input your number phone"
+                name="phoneNumber"
+                required
+              />
+            </div>
+            <div class="input-field3">
+              <label>Address</label>
+              <input
+                type="text"
+                placeholder="Input your address"
+                name="address"
+                required
+              />
+            </div>
+          </div>
+        </div>
 
-                      <!-- Order Summary -->
-              <div class="order-summary">
-                  <h3>Order Summary</h3>
-                  <ul class="fr">
-                    <li>LCD Monitor <span>$650</span></li>
-                  </ul>
-                  <ul class="sp">
-                    <li>H1 Gamepad <span>$1100</span></li>
-                  </ul>
-                  <ul class="bt">
-                    <li>Subtotal: <span>$1750</span></li>
-                    <li>Shipping: <span>Free</span></li>
-                    <p>Total: <span>$1750</span></p>
-                  </ul>
-                    
-                    <div class="arrpayment">
-                        <div class="payment-options">
-                            <label><input type="radio" name="payment" value="bank"> Bank</label>
-                            <label><input type="radio" name="payment" value="cod" checked> Cash on delivery</label>
-                        </div>
-                        <div class="cardlogo">
-                            <img src="/frontend/views/page/Order/Pic/lam-the-visa-ngan-hang-nao-tot.png" alt="logo the" width="60px", height="50px">
-                        </div>
-                    </div>
-                    <div class="input-field4">
-                        <input type="text" placeholder="Coupon Code">
-                        <button class="apply-coupon">Apply Coupon</button>
-                    </div>
-                        
-                        <div class="orderbutton"><button class="submit-btn">Order</button></div>
-                    </div>
-                  </div>
-            </div>   
-    </div>
-  </main>
+        <div class="order-summary">
+          <h3>Order Summary</h3>
+          <% cartItems.forEach(cartItem => { %>     
+            <div class="order-item">
+              <img src="/images/products/<%= cartItem.product.category.name %>/<%= cartItem.product.imgName %>" />
+              <div class="order-item-details">
+                <h4><%= cartItem.product.name %></h4>
+                <p><%= cartItem.quantity %></p>
+              </div>
+              <div class="order-item-price"><%= cartItem.totalPrice.toLocaleString('vi-VN')+" VND" %></div>
+            </div>
+          <% }) %>
+          <div class="summary-footer">
+            <div class="summary-line">
+              <span>Grand Total</span>
+              <% const totalSum = cartItems.reduce((sum, item) => sum +item.totalPrice, 0); %>
+              <span class="total-price"><%= totalSum.toLocaleString('vi-VN')+" VND" %></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="arrpayment">
+          <div class="payment-options">
+            <label
+              ><input type="radio" name="paymentMethod" value="credit_card" />
+              Credit card</label
+            >
+            <label
+              ><input type="radio" name="paymentMethod" value="paypal" />
+              Paypal</label
+            >
+            <label
+              ><input
+                type="radio"
+                name="paymentMethod"
+                value="cash_on_delivery"
+                checked
+              />
+              Cash on delivery</label
+            >
+          </div>
+        </div>
+        <div class="submit-btn">
+          <button type="submit">Order</button>
+        </div>
+      </form>
+    </main>
 
     <!-- Footer -->
     <footer>
-        <div class="footer-container">
-            <div class="footer-row">
-                <div class="footer-column">
-                    <strong>Support</strong>
-                    <ul>
-                        <li><a href="#">HanHuyen, Thu Duc, HCM</a></li>
-                        <li><a href="#">lapshop@gmail.com</a></li>
-                        <li><a href="#">555-555-555</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <strong>Account</strong>
-                    <ul>
-                        <li><a href="#">My account</a></li>
-                        <li><a href="#">Login / Register</a></li>
-                        <li><a href="#">Cart</a></li>
-                        <li><a href="#">Wishlist</a></li>
-                        <li><a href="#">Shop</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <strong>Quick link</strong>
-                    <ul>
-                        <li><a href="#">Privacy policy</a></li>
-                        <li><a href="#">Terms of uses</a></li>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <strong>Contact</strong>
-                    <div class="contact-icons">
-                        <a href="#"><i class="fa-brands fa-facebook"></i></a>
-                        <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
-                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-                    </div>
-                </div>
+      <div class="footer-container">
+        <div class="footer-row">
+          <div class="footer-column">
+            <strong>Support</strong>
+            <ul>
+              <li><a href="#">HanHuyen, Thu Duc, HCM</a></li>
+              <li><a href="#">lapshop@gmail.com</a></li>
+              <li><a href="#">555-555-555</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <strong>Account</strong>
+            <ul>
+              <li><a href="#">My account</a></li>
+              <li><a href="#">Login / Register</a></li>
+              <li><a href="#">Cart</a></li>
+              <li><a href="#">Wishlist</a></li>
+              <li><a href="#">Shop</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <strong>Quick link</strong>
+            <ul>
+              <li><a href="#">Privacy policy</a></li>
+              <li><a href="#">Terms of uses</a></li>
+              <li><a href="#">FAQ</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <strong>Contact</strong>
+            <div class="contact-icons">
+              <a href="#"><i class="fa-brands fa-facebook"></i></a>
+              <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+              <a href="#"><i class="fa-brands fa-instagram"></i></a>
+              <a href="#"><i class="fa-brands fa-linkedin"></i></a>
             </div>
-            <div class="footer-row">
-                <div class="footer-column">
-                    <div class="copyright">
-                        &copy; Copyright Rimel 2022. All rights reserved.
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+        <div class="footer-row">
+          <div class="footer-column">
+            <div class="copyright">
+              &copy; Copyright Rimel 2022. All rights reserved.
+            </div>
+          </div>
+        </div>
+      </div>
     </footer>
-</body>
+  </body>
+  <script src="/scripts/order.js"></script>
 </html>
