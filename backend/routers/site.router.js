@@ -43,6 +43,10 @@ router.get("/info", checkAuthenticated, (req, res) => {
   const user = req.user;
   res.render("page/profile.ejs", { user: user });
 });
+router.get("/my-account", checkAuthenticated, (req, res) => {
+  const user = req.user;
+  res.render("page/my-account.ejs", { user: user });
+});
 router.get("/register", checkNotAuthenticated, (req, res) => {
   res.render("page/register.ejs");
 });
@@ -56,9 +60,10 @@ router.get("/to-pay", (req, res) => {
   res.render("page/to-pay.ejs");
 });
 router.get("/product-page", async (req, res) => {
+  const queryString = new URLSearchParams(req.query).toString();
   const baseUrl = `${req.protocol}://${req.get("host")}${req.baseUrl}`;
   const apiUrl = `${baseUrl}${api}`;
-  const products = await fetch(`${apiUrl}/product`, {
+  const products = await fetch(`${apiUrl}/product?${queryString}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

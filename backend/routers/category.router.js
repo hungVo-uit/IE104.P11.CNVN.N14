@@ -6,9 +6,17 @@ const router = express.Router();
 router.get("/", async (req, res) => {
   const categoryList = await Category.find();
   if (!categoryList) {
-    res.status(500).json({ sucees: false });
+    res.status(500).json({ success: false });
   }
   res.send(categoryList);
+});
+router.get("/categoryId-by-name/:name", async (req, res) => {
+  const name = req.params.name;
+  const category = await Category.findOne({name:name});
+  if (!category) {
+    res.status(500).json({ success: false });
+  }
+  res.send(category.id);
 });
 
 router.post("/", async (req, res) => {
@@ -36,7 +44,7 @@ router.delete("/:id", (req, res) => {
       }
     })
     .catch((err) => {
-      return res.status(400).json({ sucees: false, error: err });
+      return res.status(400).json({ success: false, error: err });
     });
 });
 module.exports = router;

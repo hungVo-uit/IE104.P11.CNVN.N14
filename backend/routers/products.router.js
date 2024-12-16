@@ -11,10 +11,11 @@ router.get("/", async (req, res) => {
   //get query sort
   const sortBy = req.query.sortBy || "dateCreated";
   const order = req.query.order === "desc" ? -1 : 1;
-
+ 
   let filter = {};
   if (category) {
-    filter.category = category;
+    const categoryId = await Category.findOne({ name: category });
+    filter.category = categoryId.id;
   }
   if (brand) {
     filter.brand = brand;
