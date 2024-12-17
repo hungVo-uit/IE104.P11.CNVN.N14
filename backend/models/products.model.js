@@ -16,7 +16,7 @@ const productsSchema = new mongoose.Schema({
   },
   brand: {
     type: String,
-    enum: ["hp", "asus", "dell", "lenovo", "acer", "macbook"],
+    enum: ["hp", "asus", "dell", "lenovo", "acer", "apple"],
     default: "",
   },
   category: {
