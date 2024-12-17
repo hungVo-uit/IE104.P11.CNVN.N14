@@ -31,7 +31,7 @@ document
     const confirmPassword = document.getElementById("confirmPassword").value;
 
     if (password !== confirmPassword) {
-      alert("Mật khẩu và xác nhận mật khẩu không khớp!");
+      alert("Confirmation password does not match!");
       return;
     }
     const response = await fetch("/api/av1/user", {
