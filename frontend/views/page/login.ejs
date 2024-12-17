@@ -12,10 +12,13 @@
   </head>
   <body>
     <header><%- include("../partials/header.ejs") %></header>
-      <%- include("../partials/sub-nav.ejs") %>
+    <%- include("../partials/sub-nav.ejs") %>
     <div class="login-container">
       <h2>Login to your account</h2>
       <form action="/api/av1/user/login" method="post">
+        <% if (error.length > 0) { %>
+        <div class="error-message"><%= error %></div>
+        <% } %>
         <div class="input-group">
           <input
             type="text"
@@ -43,7 +46,6 @@
     </div>
 
     <%- include("../partials/footer.ejs") %>
-
   </body>
   <script src="/scripts/login.js"></script>
 </html>

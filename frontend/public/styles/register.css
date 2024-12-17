@@ -7,8 +7,6 @@
     box-sizing: border-box;
     font-family: Arial, sans-serif;
 }
-
-/* Body and Fonts */
 body {
     background-color: #f7f7f7;
     display: flex;
@@ -16,23 +14,13 @@ body {
     min-height: 100vh;
 }
 
-/* Header Banner */
-.header-banner {
-    background-color: black;
-  color: white;
-  text-align: center;
-  padding:1rem 0;
-}
-
-.header-banner a {
-    color: white;
-}
 ul {
     list-style-type: none;
   }
 /* Main Content */
 main {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: 80vh;

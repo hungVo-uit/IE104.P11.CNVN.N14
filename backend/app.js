@@ -8,6 +8,7 @@ const passport = require("passport");
 const app = express();
 const initializePassport = require("./config/passport.config");
 const session = require("express-session");
+const flash = require("express-flash");
 require("dotenv/config");
 
 //conect database
@@ -25,6 +26,7 @@ app.use(
   })
 );
 app.use(bodyParser.json());
+app.use(flash());
 app.use(express.urlencoded({ extended: false }));
 app.use(
   session({

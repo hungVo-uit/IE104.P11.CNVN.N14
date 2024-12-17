@@ -94,7 +94,17 @@ a {
   justify-content: space-between;
   gap: 200px;
 }
-
+.logout-btn {
+  padding-top: 20px;
+  font-size: 43px;
+  text-decoration: none;
+  color: black;
+  background-color: white;
+  border: none;
+}
+.logout-btn:hover{
+  cursor: pointer;
+}
 .icon-item {
   display: flex;
   flex-direction: column;

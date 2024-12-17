@@ -10,18 +10,6 @@ a {
     text-decoration: none;
 }
 
-.advertisement {
-    background-color: black;
-    color: white;
-    text-align: center;
-    padding: 1rem 0;
-}
-
-.advertisement a {
-    color: white;
-    font-weight: bold;
-    height: 48px;
-}
 
 .breadcrumb-container {
     display: flex;
@@ -145,9 +133,6 @@ a {
     border-style: none;
 }
 
-.cancel-save-button{
-    
-}
 
 .btn-cancel{
     border-style: none;

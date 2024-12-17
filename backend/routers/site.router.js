@@ -37,7 +37,7 @@ router.route("/product-detail/:id").get(async (req, res) => {
   res.render("page/detailProduct.ejs", { product: product });
 });
 router.get("/login", checkNotAuthenticated, (req, res) => {
-  res.render("page/login.ejs");
+  res.render("page/login.ejs",{error:req.flash("error")});
 });
 router.get("/info", checkAuthenticated, (req, res) => {
   const user = req.user;
