@@ -17,7 +17,7 @@
       <h2>Login to your account</h2>
       <form action="/api/av1/user/login" method="post">
         <% if (error.length > 0) { %>
-        <div class="error-message"><%= error %></div>
+        <div class="error-message" id="flashMessage"><%= error %></div>
         <% } %>
         <div class="input-group">
           <input

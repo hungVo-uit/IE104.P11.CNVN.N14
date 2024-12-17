@@ -7,3 +7,10 @@ showPasswordButton.addEventListener("click", function () {
     passwordField.type = "password";
   }
 });
+setTimeout(() => {
+  const flashMessage = document.getElementById("flashMessage");
+  if (flashMessage) {
+    flashMessage.classList.add("hidden");
+    setTimeout(() => flashMessage.remove(), 500); // Xóa hẳn phần tử sau hiệu ứng
+  }
+}, 3000);
