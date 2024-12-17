@@ -141,12 +141,14 @@ main {
     margin-right: 40px
 }
 
-.product-card{
-    position: relative;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
+.product-card .details h2 {
+    font-size: 1.5em;
+    height: 70px;
+    margin: 0 0 10px;
+    color: #333;
+    overflow: hidden;        
+    text-overflow: ellipsis;  
+  }
 .discount-percent{
     position: absolute;
     background-color: #DB4444;

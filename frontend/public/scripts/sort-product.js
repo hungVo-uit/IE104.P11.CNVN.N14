@@ -9,17 +9,20 @@ sortSelector.addEventListener("change", () => {
   window.location.href = url;
 });
 window.addEventListener("load", () => {
-  const sortByValue = sessionStorage.getItem("sortBy");
-  const orderValue = sessionStorage.getItem("order");
-
+  const params = new URLSearchParams(window.location.search);
+  const sortByValue = params.get("sortBy");
+  const orderValue = params.get("order");  
+  
   if (sortByValue && orderValue) {
-    Array.from(sortSelector.options).forEach((option) => {
-      if (
-        option.getAttribute("sortBy") === sortByValue &&
-        option.getAttribute("order") === orderValue
-      ) {
-        option.selected = true;
-      }
+    const selectedOption = Array.from(sortSelector.options).find((option) => {
+      return (
+        option.getAttribute("sortBy") == sortByValue &&
+        option.getAttribute("order") == orderValue
+      );
     });
+
+    if (selectedOption) {
+      selectedOption.selected = true;
+    }
   }
 });

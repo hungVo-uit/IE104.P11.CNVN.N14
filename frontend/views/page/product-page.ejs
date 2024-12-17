@@ -21,10 +21,10 @@
     <main>
       <%- include("../partials/sub-nav.ejs") %>
       <div class="breadcrumb-container">
-        <nav class="breadcrumb">
-          <a class="home" href="#">Home</a> /
+        <nav class="breadcrumb" id="breadcrumb">
+          <a class="home" href="/">Home</a> /
           <a class="phone" href="#">
-            <strong>Laptop</strong>
+            <strong><%= category %></strong>
           </a>
         </nav>
       </div>
@@ -43,11 +43,11 @@
                 border-radius: 88px;
                 background-color: #f9f9f9;
                 cursor: pointer;
-                font-size:2.5rem;
+                font-size: 2.5rem;
                 font-weight: 1.25rem;
               "
             >
-            ALL 
+              ALL
             </button>
           </div>
           <div class="hp-filter filter-btn" brand="hp">
@@ -142,21 +142,22 @@
           </div>
         </div>
         <select id="sortOptions">
-          <option value="name_asc" sortBy="name" order="asc">Tên (A-Z)</option>
+          <option value="" disabled selected>Select an option</option>
+          <option value="name_asc" sortBy="name" order="asc">Name (A-Z)</option>
           <option value="name_desc" sortBy="name" order="desc">
-            Tên (Z-A)
+            Name (Z-A)
           </option>
           <option value="price_low_high" sortBy="price" order="asc">
-            Giá (Thấp → Cao)
+            Price (Low → High)
           </option>
           <option value="price_high_low" sortBy="price" order="desc">
-            Giá (Cao → Thấp)
+            Price (High → Low)
           </option>
-          <option value="date_old_new" sortBy="date" order="asc">
-            Ngày (Cũ nhất)
+          <option value="date_old_new" sortBy="dateCreated" order="asc">
+            Date (Oldest)
           </option>
-          <option value="date_new_old" sortBy="date" order="desc">
-            Ngày (Mới nhất)
+          <option value="date_new_old" sortBy="dateCreated" order="desc">
+            Date (Newest)
           </option>
         </select>
       </div>
@@ -171,4 +172,5 @@
   <script src="scripts/product-card.js"></script>
   <script src="scripts/filterProduct.js"></script>
   <script src="scripts/sort-product.js"></script>
+  <script src="scripts/product-page.js"></script>
 </html>

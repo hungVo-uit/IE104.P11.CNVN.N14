@@ -22,9 +22,6 @@
           <%-include('../components/product-card.ejs',{product:product}) %>
           <%}); %>
         </div>
-        <div class="more-btn">
-          <a href="">More</a>
-        </div>
       </div>
       <hr>
       <hr />
@@ -56,6 +53,30 @@
         <h2 class="list-name">Mouse</h2>
         <div class="products-container">
           <% products.filter(product=>product.category.name==='mouse').slice(0,5).forEach(product => { %>
+          <%-include('../components/product-card.ejs',{product:product}) %>
+          <%}); %>
+        </div>
+        <div class="more-btn">
+          <a href="">More</a>
+        </div>
+      </div>
+      <hr />
+      <div class="product-list">
+        <h2 class="list-name">Srceen</h2>
+        <div class="products-container">
+          <% products.filter(product=>product.category.name==='screen').slice(0,5).forEach(product => { %>
+          <%-include('../components/product-card.ejs',{product:product}) %>
+          <%}); %>
+        </div>
+        <div class="more-btn">
+          <a href="">More</a>
+        </div>
+      </div>
+      <hr />
+      <div class="product-list">
+        <h2 class="list-name">Headsphone</h2>
+        <div class="products-container">
+          <% products.filter(product=>product.category.name==='headsphone').slice(0,5).forEach(product => { %>
           <%-include('../components/product-card.ejs',{product:product}) %>
           <%}); %>
         </div>

@@ -37,7 +37,7 @@ router.route("/product-detail/:id").get(async (req, res) => {
   res.render("page/detailProduct.ejs", { product: product });
 });
 router.get("/login", checkNotAuthenticated, (req, res) => {
-  res.render("page/login.ejs",{error:req.flash("error")});
+  res.render("page/login.ejs", { error: req.flash("error") });
 });
 router.get("/info", checkAuthenticated, (req, res) => {
   const user = req.user;
@@ -85,7 +85,11 @@ router.get("/product-page", async (req, res) => {
   })
     .then((data) => data.json())
     .catch((err) => console.log(err));
-  res.render("page/product-page.ejs", { products: products });
+  const category = req.query.category || "ALL";
+  res.render("page/product-page.ejs", {
+    products: products,
+    category: category,
+  });
 });
 router.get("/cart", checkAuthenticated, async (req, res) => {
   const baseUrl = `${req.protocol}://${req.get("host")}${req.baseUrl}`;

@@ -11,7 +11,7 @@
 }
 .product-card img {
   width: 100%;
-  height: auto;
+  height: 200px;
 }
 
 .product-card .details {
@@ -20,8 +20,11 @@
 
 .product-card .details h2 {
   font-size: 1.5em;
+  height: 60px;
   margin: 0 0 10px;
   color: #333;
+  overflow: hidden;        
+  text-overflow: ellipsis;  
 }
 
 .product-card .details .price {
