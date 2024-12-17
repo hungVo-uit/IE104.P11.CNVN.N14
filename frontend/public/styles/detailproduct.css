@@ -24,11 +24,12 @@ body {
   margin-left: 70px;
   justify-content: space-around;
 }
-
-.home {
+.breadcrumb a,.breadcrumb p{
+  text-decoration: none;
   color: rgb(95, 94, 94);
   font-size: 43px;
-}
+} 
+
 
 .my-account {
   color: black;
@@ -68,10 +69,6 @@ body {
   height: auto; /* Tự động điều chỉnh chiều cao theo tỉ lệ */
 }
 
-.check-available {
-  color: #db4444;
-}
-
 .purchase-options {
   text-align: center;
   margin-top: 50px;
@@ -97,6 +94,7 @@ body {
   align-items: center;
   gap: 10px;
 }
+
 
 .main-image {
   width: 300px;
